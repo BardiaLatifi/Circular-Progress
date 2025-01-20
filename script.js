@@ -6,24 +6,43 @@ let progress1 = 35;
 let progress2 = 43;
 let progress3 = 87;
 
-function enableProgressBar() {
-  progressBar1.setAttribute("role", "progressbar");
-  progressBar1.setAttribute("aria-valuenow", progress1);
-  progressBar1.style.setProperty("--progress", progress1 + "%");
-  progressBar1.setAttribute("aria-live", "polite");
-
-  progressBar2.setAttribute("role", "progressbar");
-  progressBar2.setAttribute("aria-valuenow", progress2);
-  progressBar2.style.setProperty("--progress", progress2 + "%");
-  progressBar2.setAttribute("aria-live", "polite");
-
-  progressBar3.setAttribute("role", "progressbar");
-  progressBar3.setAttribute("aria-valuenow", progress3);
-  progressBar3.style.setProperty("--progress", progress3 + "%");
-  progressBar3.setAttribute("aria-live", "polite");
+// Function to enable and update the specified progress bar
+function enableProgressBar(progressBar, initialValue) {
+  progressBar.setAttribute("role", "progressbar");
+  progressBar.setAttribute("aria-live", "polite");
+  progressBar.setAttribute("aria-valuenow", initialValue);
+  progressBar.style.setProperty("--progress", initialValue + "%");
 }
-document.addEventListener("DOMContentLoaded", function() {
-  enableProgressBar();
-});
 
+// Animate function remains unchanged
+const animate = function (targetValue, interval, updateCallback, progressBar) {
+  let current = 0;
 
+  const timer = setInterval(() => {
+
+    const increment = (targetValue - current) / (interval / 5);
+    if (current < targetValue) {
+      current += increment;
+      updateCallback(current, progressBar); // Pass the current value and the specific progress bar
+    } else {
+      clearInterval(timer);
+    }
+  }, interval);
+};
+
+// Function to update the specified progress bar
+function updateProgressBar(value, progressBar) {
+  const roundedValue = Math.round(value);
+  progressBar.setAttribute("aria-valuenow", roundedValue);
+  progressBar.style.setProperty("--progress", value + "%");
+}
+
+// Enable and initialize the progress bars
+enableProgressBar(progressBar1, progress1);
+enableProgressBar(progressBar2, progress2);
+enableProgressBar(progressBar3, progress3);
+
+// Start animating the progress bars
+animate(progress1, 100, updateProgressBar, progressBar1);
+animate(progress2, 100, updateProgressBar, progressBar2);
+animate(progress3, 100, updateProgressBar, progressBar3);
