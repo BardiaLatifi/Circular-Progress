@@ -1,3 +1,9 @@
+@property --progress {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
 #container {
   display: flex;
 }
@@ -24,6 +30,8 @@
 
   display: grid;
   place-items: center;
+
+  transition: --progress 800ms;
 
 }
 
