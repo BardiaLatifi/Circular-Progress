@@ -22,5 +22,8 @@ function enableProgressBar() {
   progressBar3.style.setProperty("--progress", progress3 + "%");
   progressBar3.setAttribute("aria-live", "polite");
 }
+document.addEventListener("DOMContentLoaded", function() {
+  enableProgressBar();
+});
 
-enableProgressBar();
+
