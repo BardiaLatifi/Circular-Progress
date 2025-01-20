@@ -4,8 +4,27 @@
   initial-value: 0%;
 }
 
-#container {
+#benchmark-container {
   display: flex;
+  justify-content: space-evenly;
+}
+
+#input-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#submit-button {
+  display: block;
+  width: 150px;
+  height: 40px;
+  margin: 2em auto;
+  border: none;
+  border-radius: 5px;
+  background-color: #303030;
+  color: #e2e2e2;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 [role="progressbar"] {
