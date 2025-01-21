@@ -29,19 +29,6 @@ function enableProgressBar(progressBar, initialValue) {
     if (current < targetValue) {
       current++;
       updateCallback(current, progressBar);
-
-      // Set color based on current value
-       let color;
-      if (current < 30) {
-        color = "red";
-      } else if (current < 60) {
-        color = "yellow";
-      } else {
-         color = "lime";
-      }
-
-      // Update the CSS variable for the progress bar
-      progressBar.style.setProperty("--color-dark", color);
     } else {
       clearInterval(timer);
     }
@@ -73,3 +60,6 @@ submitButton.addEventListener("click", () => {
   animate(progress2, updateProgressBar, progressBar2);
   animate(progress3, updateProgressBar, progressBar3);
 });
+
+
+  
