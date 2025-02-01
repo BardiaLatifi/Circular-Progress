@@ -33,9 +33,7 @@
 
   --color-dark: #303030;
   --color-dark-glare: #e2e2e2;
-    
 
-  
   font-size: 2rem;
   width: var(--size);
   aspect-ratio: 1 / 1;
@@ -51,11 +49,10 @@
   place-items: center;
 
   transition: --progress 800ms;
-
 }
 
 [role="progressbar"]::after {
-  content: attr(aria-valuenow);
+  content: "";
   background: white;
   border-radius: inherit;
   width: calc(100% - var(--bar-width));
@@ -63,6 +60,20 @@
 
   display: grid;
   place-items: center;
+  position: relative;
+}
+
+.progress-text {
+  position: absolute;
+  top: 9%; /* Adjust this value to move the text up or down */
+  transform: translateY(-50%);
+  z-index: 100;
+}
+
+.fps-text {
+  font-size: 1rem;
+  font-weight: bold;
+  top: 16%;
 }
 
 [role="progressbar"] span {

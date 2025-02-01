@@ -21,45 +21,39 @@ function enableProgressBar(progressBar, initialValue) {
 }
 
 // Animate function remains unchanged
- function animate (targetValue, updateCallback, progressBar) {
+function animate(targetValue, updateCallback, progressBar) {
   let current = 0;
 
   const timer = setInterval(() => {
-
     if (current < targetValue) {
       current++;
       updateCallback(current, progressBar);
     } else {
       clearInterval(timer);
     }
-
-    
   }, 0);
-};
+}
 
 // Function to update the specified progress bar
 function updateProgressBar(value, progressBar) {
   const roundedValue = Math.round(value);
   progressBar.setAttribute("aria-valuenow", roundedValue);
-  progressBar.style.setProperty("--progress", value + "%");
+  progressBar.style.setProperty("--progress", (value / 120) * 100 + "%");
+  progressBar.querySelector('.progress-text').textContent = roundedValue;
 }
 
-
-  // Enable and initialize the progress bars
-  enableProgressBar(progressBar1, progress1);
-  enableProgressBar(progressBar2, progress2);
-  enableProgressBar(progressBar3, progress3);
+// Enable and initialize the progress bars
+enableProgressBar(progressBar1, progress1);
+enableProgressBar(progressBar2, progress2);
+enableProgressBar(progressBar3, progress3);
 
 submitButton.addEventListener("click", () => {
   progress1 = input1.value;
   progress2 = input2.value;
   progress3 = input3.value;
 
-// Start animating the progress bars
+  // Start animating the progress bars
   animate(progress1, updateProgressBar, progressBar1);
   animate(progress2, updateProgressBar, progressBar2);
   animate(progress3, updateProgressBar, progressBar3);
 });
-
-
-  
